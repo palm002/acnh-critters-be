@@ -1,0 +1,25 @@
+{
+  "name": "acnh-critters-be",
+  "version": "0.0.1",
+  "description": "ACNH Critters Backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/palm002/acnh-critters-be.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palm002/acnh-critters-be/issues"
+  },
+  "homepage": "https://github.com/palm002/acnh-critters-be#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
