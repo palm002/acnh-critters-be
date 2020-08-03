@@ -1,11 +1,9 @@
 const express = require('express');
 const app = express();
-const mongo = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const { ApolloServer, gql } = require('apollo-server-express');
-const { typeDefs, resolvers } = require('./graphql/schemas');
-
+const mongoose = require('mongoose');
+const { ApolloServer } = require('apollo-server-express');
+const { Fish } = require('./models/Fish')
+const { typeDefs, resolvers } = require ('./graphql/schemas')
 
 require('dotenv/config');
 
@@ -16,13 +14,14 @@ const port = process.env.PORT || 4000;
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: (req) => ({ ...req, Fish }) 
 });
 
 
 server.applyMiddleware({ app });
 
 // connect to db
-mongo.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },
     () => console.log('Connected to MongoDB')
 );
 

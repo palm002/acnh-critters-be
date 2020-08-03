@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const FishSchema = mongoose.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: true
@@ -20,13 +16,13 @@ const FishSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    time: {
-        type: Date,
-        default: Date.now
-    },
+    // time: {
+    //     type: Date,
+    //     default: Date.now
+    // },
     seasonality: {
         type: Boolean,
-        required: true
+        // required: true
     },
     image: {
         type: String,
@@ -34,10 +30,11 @@ const FishSchema = mongoose.Schema({
     }
 });
 
-const mongooseModel = mongoose.model('Fish', FishSchema, 'fish');
+const Fish = mongoose.model('Fish', FishSchema, 'Fish');
 
-const fishModel = () => ({
-    getAll: () => mongooseModel.find(),
-});
+// const createFishModel = () => ({
+//     getAll: () => mongooseModel.find(),
+// });
 
-module.exports = { fishModel };
+// module.exports = { createFishModel };
+module.exports = { Fish };
