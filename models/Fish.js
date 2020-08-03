@@ -30,7 +30,7 @@ const FishSchema = mongoose.Schema({
     }
 });
 
-const Fish = mongoose.model('Fish', FishSchema, 'Fish');
+const Fish = mongoose.model('Fish', FishSchema);
 
 // const createFishModel = () => ({
 //     getAll: () => mongooseModel.find(),
