@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
 
-const InsectSchema = mongoose.Schema({
+const SeaCreatureSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    location: {
+    size: {
         type: String,
         required: true
     },
     value: {
         type: Number,
+        required: true
+    },
+    swimPattern: {
+        type: String,
         required: true
     },
     month: {
@@ -27,6 +31,6 @@ const InsectSchema = mongoose.Schema({
     }
 });
 
-const Insect = mongoose.model('Insects', InsectSchema)
+const SeaCreature = mongoose.model('SeaCreatures', SeaCreatureSchema)
 
-module.exports = { Insect };
+module.exports = { SeaCreature };
