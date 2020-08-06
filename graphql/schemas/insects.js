@@ -6,8 +6,8 @@ const typeDefs = gql`
     name: String!
     location: String!
     value: Int!
-    hemisphere: Boolean!
-    # month
+    time: String!
+    month: Months!
     image: String!
   }
 
@@ -15,8 +15,8 @@ const typeDefs = gql`
     name: String!
     location: String!
     value: Int!
-    hemisphere: Boolean!
-    # month:
+    time: String!
+    month: MonthsInput
     image: String!
   }
 
@@ -33,7 +33,7 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    allInsects: (parent, { ids }, context, info) => {
+    allInsects: (_, { ids }, context) => {
       if (ids) {
         return ids.map((id) => context.Insect.findById(id))
       }
@@ -42,11 +42,16 @@ const resolvers = {
     oneInsect: (_, { id }, { Insect }) => Insect.findById(id),
   },
   Mutation: {
-    addInsect: (_, args, { Insect }, info) => {
+    addInsect: (_, args, { Insect }) => {
       return Insect.create(args.input)
     },
-    addMultipleInsects: (_, { input }, { Insect }, info) => {
+    addMultipleInsects: (_, { input }, { Insect }) => {
       return Insect.insertMany(input)
+    },
+  },
+  Insect: {
+    month: ({ _id, month }) => {
+      return { _id, ...month }
     },
   },
 }

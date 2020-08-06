@@ -1,15 +1,26 @@
 const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
+  type Months {
+    _id: ID
+    north: [Int]
+    south: [Int]
+  }
+
   type Fish {
     _id: ID
     name: String!
     location: String!
     size: String!
     value: Int!
-    hemisphere: Boolean!
-    # month:
+    time: String!
+    month: Months!
     image: String!
+  }
+
+  input MonthsInput {
+    north: [Int!]!
+    south: [Int!]!
   }
 
   # use input type if you have more than 1 arg
@@ -18,8 +29,8 @@ const typeDefs = gql`
     location: String!
     size: String!
     value: Int!
-    hemisphere: Boolean!
-    # month:
+    time: String!
+    month: MonthsInput
     image: String!
   }
 
@@ -43,6 +54,7 @@ const resolvers = {
         // shorthand context.Fish.findById
         return ids.map((id) => context.Fish.findById(id))
       }
+      // context.fishService.find
       return context.Fish.find()
     },
     oneFish: (_, { id }, { Fish }) => Fish.findById(id),
@@ -54,6 +66,11 @@ const resolvers = {
     },
     addMultipleFish: (_, { input }, { Fish }, info) => {
       return Fish.insertMany(input)
+    },
+  },
+  Fish: {
+    month: ({ _id, month }) => {
+      return { _id, ...month }
     },
   },
 }

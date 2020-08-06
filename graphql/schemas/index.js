@@ -15,6 +15,7 @@ const makeSchema = () => {
       resolvers: {},
     }
   )
+  console.log(merged)
   return makeExecutableSchema(merged)
 }
 
