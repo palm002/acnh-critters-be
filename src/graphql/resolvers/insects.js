@@ -1,5 +1,4 @@
 const resolvers = {
-
   Query: {
     allInsects: (_, { ids }, context) => {
       if (ids) {

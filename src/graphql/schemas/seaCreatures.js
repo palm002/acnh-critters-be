@@ -1,18 +1,18 @@
 const { gql } = require('apollo-server-express')
 
-const typeDefs = `
+const typeDefs = gql`
   type Months {
     _id: ID
     north: [Int]
     south: [Int]
   }
 
-  type Fish {
+  type SeaCreature {
     _id: ID
     name: String!
-    location: String!
     size: String!
     value: Int!
+    swimPattern: String!
     time: String!
     month: Months!
     image: String!
@@ -22,27 +22,26 @@ const typeDefs = `
     north: [Int!]!
     south: [Int!]!
   }
-
-  # use input type if you have more than 1 arg
-  input AddFishInput {
+  
+  input AddSeaCreatureInput {
     name: String!
-    location: String!
     size: String!
     value: Int!
+    swimPattern: String!
     time: String!
     month: MonthsInput
     image: String!
   }
 
   type Query {
-    allFish(ids: [ID]): [Fish]
-    oneFish(id: ID!): Fish
+    allCreatures(ids: [ID]): [SeaCreature]
+    oneCreature(id: ID!): SeaCreature
   }
 
   type Mutation {
-    addFish(input: AddFishInput): Fish
-    addMultipleFish(input: [AddFishInput]): [Fish]
+    addSeaCreature(input: AddSeaCreatureInput): SeaCreature
+    addMultipleSeaCreatures(input: [AddSeaCreatureInput]): [SeaCreature]
   }
 `
 
-module.exports = { typeDefs }
+module.exports = typeDefs

@@ -1,5 +1,4 @@
 const resolvers = {
-
   Query: {
     // put all data/service layer into context, need to bring in this layer to context
     // TODO read parent, args, context, info

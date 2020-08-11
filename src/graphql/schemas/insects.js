@@ -1,7 +1,12 @@
 const { gql } = require('apollo-server-express')
 
-// add months to typedefs
-const typeDefs = `
+const typeDefs = gql`
+  type Months {
+    _id: ID
+    north: [Int]
+    south: [Int]
+  }
+
   type Insect {
     _id: ID
     name: String!
@@ -10,6 +15,11 @@ const typeDefs = `
     time: String!
     month: Months!
     image: String!
+  }
+
+  input MonthsInput {
+    north: [Int!]!
+    south: [Int!]!
   }
 
   input AddInsectInput {
@@ -32,4 +42,4 @@ const typeDefs = `
   }
 `
 
-module.exports = { typeDefs }
+module.exports = typeDefs

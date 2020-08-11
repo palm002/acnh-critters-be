@@ -3,8 +3,8 @@ const app = express()
 const mongoose = require('mongoose')
 const { ApolloServer } = require('apollo-server-express')
 
-const { Fish, Insect, SeaCreature } = require('./models')
-const { makeSchema } = require('./graphql')
+const { Fish, Insect, SeaCreature } = require('./src/models')
+const { makeSchema } = require('./src/graphql')
 
 require('dotenv/config')
 
