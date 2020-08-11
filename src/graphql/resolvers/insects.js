@@ -1,16 +1,16 @@
 const resolvers = {
   Query: {
-    allInsects: (_, { ids }, context) => {
+    allInsects: (_, { ids }, { Insect }) => {
       if (ids) {
-        return ids.map((id) => context.Insect.findById(id))
+        return ids.map((id) => Insect.findById(id))
       }
-      return context.Insect.find()
+      return Insect.find()
     },
     oneInsect: (_, { id }, { Insect }) => Insect.findById(id),
   },
   Mutation: {
-    addInsect: (_, args, { Insect }) => {
-      return Insect.create(args.input)
+    addInsect: (_, { input }, { Insect }) => {
+      return Insect.create(input)
     },
     addMultipleInsects: (_, { input }, { Insect }) => {
       return Insect.insertMany(input)
