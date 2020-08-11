@@ -44,7 +44,7 @@ const typeDefs = gql`
     addMultipleFish(input: [AddFishInput]): [Fish]
   }
 `
-
+// TODO take resolvers out
 const resolvers = {
   Query: {
     // put all data/service layer into context, need to bring in this layer to context
